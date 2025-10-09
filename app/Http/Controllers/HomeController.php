@@ -37,10 +37,7 @@ class HomeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
-        //
-    }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -59,10 +56,78 @@ class HomeController extends Controller
     }
 
     /**
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
         //
     }
+    public function showSignup(){
+        return view('simple-home');
+    }
+    public function signup(Request $request){
+        $request->validate([
+		    'name'  => 'required|max:10',
+		    'email' => ['required','email'],
+		    'password' => [
+		        'required',           // Wajib diisi
+		        'string',             // Harus berupa string
+		        'min:8',              // Minimal 8 karakter
+		        'regex:/[a-z]/',      // Harus mengandung setidaknya 1 huruf kecil
+		        'regex:/[A-Z]/',      // Harus mengandung setidaknya 1 huruf besar
+		        'regex:/[0-9]/',      // Harus mengandung setidaknya 1 angka
+		    ],
+		]);
+        //dd($request->all());
+        $data ['name']        = $request->name;
+        $data ['email']           = $request->email;
+        $data ['password']        = $request->password;
+        return view('signup-succes', $data );
+    }
+
+        public function showlogin(){
+        return view('login-form');
+    }
+
+        public function login(Request $request)
+        {
+            $request->validate([
+                'username' => 'required|max:11',
+                'password' => [
+                    'required',
+                    'min:3',              // Minimal 3 karakter
+                    'regex:/[A-Z]/',      // Harus ada huruf besar
+                ],
+            ]);
+
+            $nim = 'A2455301234';
+            if ($request->username == $nim && $request->password == $nim) {
+                // Jika berhasil
+                return redirect()
+                    ->route('home.login')
+                    ->with('success', 'Login Berhasil! Selamat datang.');
+            } else {
+                // Jika gagal
+                return redirect()
+                    ->route('home.login')
+                    ->with('error', 'Username atau Password salah!');
+            }
+        }
 }
+
+

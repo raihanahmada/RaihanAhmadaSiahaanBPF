@@ -26,7 +26,11 @@ Route::get('/about', function () {
     return view('halaman-about');
 });
 
-Route::get('/mahasiswa/{param1}',[MahasiswaController::class, 'show']);
-Route::get('/home',[HomeController::class, 'index']);
-Route::get('/pegawai',[PegawaiController::class, 'index']);
+Route::get('home/signup',[HomeController::class, 'showSignup'])->name('signup.show');
+
+Route::POST('home/signup', [HomeController::class, 'signup'])->name('home.signup.submit');
+
+Route::get('/auth',[HomeController::class, 'showlogin'])->name('home.login');
+
+Route::POST('/auth/login', [HomeController::class, 'login'])->name('home.login.submit');
 

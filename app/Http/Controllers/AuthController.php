@@ -4,14 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class MahasiswaController extends Controller
+class AuthController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        return view('login-form');
     }
 
     /**
@@ -33,12 +33,9 @@ class MahasiswaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $param1){
-        if ($param1=='detail'){
-            return view ('halaman-mahasiswa');
-        }else if ($param1=='profil'){
-            return view ('halaman-mahasiswa-profil');
-        }
+    public function show(string $id)
+    {
+        //
     }
 
     /**
