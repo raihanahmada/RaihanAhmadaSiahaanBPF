@@ -100,10 +100,9 @@ class HomeController extends Controller
         return view('signup-succes', $data );
     }
 
-        public function showlogin(){
+            public function showlogin(){
         return view('login-form');
     }
-
         public function login(Request $request)
         {
             $request->validate([
@@ -114,7 +113,6 @@ class HomeController extends Controller
                     'regex:/[A-Z]/',      // Harus ada huruf besar
                 ],
             ]);
-
             $nim = 'A2455301234';
             if ($request->username == $nim && $request->password == $nim) {
                 // Jika berhasil

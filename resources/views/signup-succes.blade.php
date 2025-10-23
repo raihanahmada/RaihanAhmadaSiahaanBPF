@@ -70,15 +70,19 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero-section">
+<section class="hero-section text-center py-5 bg-primary text-white">
         <div class="container">
-            <h1>Welcome {{$name}}</h1>
-            <p class="lead">Berikut info sign up yang dilakukan:</p>
-            <a href="#content" class="btn btn-success btn-lg mt-3">{{$email}}</a>
-            <a href="#content" class="btn btn-warning btn-lg mt-3">{{$password}}</a>
+            <h1>Welcome, {{ session('username') ?? $name }}</h1>
+            <p class="lead">Berhasil Sign Up!</p>
+            <div class="mt-3">
+                <a href="#" class="btn btn-light">Email: {{ session('email') ?? $email }}</a>
+            </div>
+            <div class="mt-3">
+                <a href="#" class="btn btn-warning">Password: {{ $password }}</a>
+            </div>
         </div>
     </section>
+
 
     <!-- Footer -->
     <footer class="footer">
